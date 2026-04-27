@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quartier Stadtheide</title>
+  <meta name="description" content="Ein neues Quartier entsteht – hochwertiges Wohnen, durchdachte Architektur und nachhaltige Lebensräume." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-[Inter] text-gray-900 antialiased bg-white">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full bg-white/70 backdrop-blur border-b border-gray-100 z-50">
+    <div class="w-full px-10 py-5 flex justify-between items-center">
+      <span class="text-sm tracking-wide uppercase">Quartier Stadtheide</span>
+      <nav class="hidden md:flex gap-10 text-sm text-gray-600">
+        <a href="#projekt" class="hover:text-black">Projekt</a>
+        <a href="#quartier" class="hover:text-black">Quartier</a>
+        <a href="#lage" class="hover:text-black">Lage</a>
+        <a href="#kontakt" class="hover:text-black">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero FULL WIDTH -->
+  <section class="h-screen relative flex items-center">
+    <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/30"></div>
+
+    <div class="relative z-10 w-full px-10">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-7xl font-light leading-tight text-white mb-8">
+          Ein neuer Ort<br />zum Leben entsteht
+        </h1>
+        <p class="text-lg text-white/80 mb-10 max-w-xl">
+          Modernes Wohnen im Quartier Stadtheide – architektonisch klar, nachhaltig gedacht und in attraktiver Lage.
+        </p>
+        <a href="#kontakt" class="border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition">
+          Exposé anfordern
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section id="projekt" class="py-32">
+    <div class="max-w-3xl mx-auto px-10 text-center">
+      <h2 class="text-4xl font-light mb-8">Mehr als ein Bauprojekt</h2>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Das Quartier Stadtheide steht für eine neue Art des Wohnens. Architektur, Nachhaltigkeit und Lebensqualität bilden ein Gesamtkonzept, das langfristig überzeugt.
+      </p>
+    </div>
+  </section>
+
+  <!-- Image Split -->
+  <section class="grid md:grid-cols-2">
+    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2070" class="w-full h-[500px] object-cover" />
+    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=2070" class="w-full h-[500px] object-cover" />
+  </section>
+
+  <!-- Quartier -->
+  <section id="quartier" class="py-32 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-10 text-center">
+      <h2 class="text-4xl font-light mb-8">Das Quartier</h2>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Ein lebendiges Umfeld mit Raum für Begegnung, Rückzug und Alltag. Grünflächen, Wege und moderne Architektur schaffen ein harmonisches Gesamtbild.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-2">
+    <img src="https://images.unsplash.com/photo-1507089947367-19c1da9775ae?q=80&w=2070" class="w-full h-64 object-cover" />
+    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2070" class="w-full h-64 object-cover" />
+    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2070" class="w-full h-64 object-cover" />
+    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070" class="w-full h-64 object-cover" />
+  </section>
+
+  <!-- Lage -->
+  <section id="lage" class="py-32">
+    <div class="max-w-4xl mx-auto px-10 text-center">
+      <h2 class="text-4xl font-light mb-8">Die Lage</h2>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Ruhig gelegen und dennoch hervorragend angebunden – das Quartier Stadtheide verbindet urbane Nähe mit naturnahem Wohnen.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAP FULL WIDTH -->
+  <section class="w-full h-[500px]">
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=7.3%2C51.9%2C7.5%2C52.0&layer=mapnik" class="w-full h-full border-0">
+    </iframe>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-32 text-center">
+    <h2 class="text-4xl font-light mb-6">Interesse geweckt?</h2>
+    <a href="#kontakt" class="border border-black px-10 py-4 hover:bg-black hover:text-white transition">
+      Jetzt anfragen
+    </a>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt" class="py-32 bg-gray-50">
+    <div class="max-w-xl mx-auto px-10">
+      <form class="grid gap-6">
+        <input type="text" placeholder="Name" class="border-b pb-3" />
+        <input type="email" placeholder="E-Mail" class="border-b pb-3" />
+        <textarea placeholder="Nachricht" class="border-b pb-3"></textarea>
+        <button class="border border-black py-4 hover:bg-black hover:text-white transition">
+          Anfrage senden
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center text-xs text-gray-400">
+    © 2026 Quartier Stadtheide
+  </footer>
+
+</body>
+
+</html>
