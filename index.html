@@ -1,803 +1,267 @@
-<!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<!doctype html>
+<html lang="de">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quartier Stadtheide · Paderborn</title>
-  <meta name="description" content="Ein neues Quartier entsteht in der Stadtheide Paderborn – Nahversorgung, nachhaltiges Wohnen und urbane Lebensqualität." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600;700&family=Figtree:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Syne', 'sans-serif'],
-            body: ['Figtree', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+  <!-- SEO META -->
+  <title>Quartier Stadtheide – Neues Wohn- und Einkaufsquartier in Paderborn</title>
+  <meta name="description" content="Modernes Wohn- und Einkaufsquartier in der Stadtheide Paderborn mit Rossmann, EDEKA, Lidl, nachhaltiger Bauweise und neuem Wohnraum.">
+  <meta name="keywords" content="Stadtheide, Paderborn, Quartier, Neubau, Rossmann, EDEKA, Wohnen, Immobilien, Bauprojekt">
 
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
+  <!-- Open Graph (Social Media Preview) -->
+  <meta property="og:title" content="Quartier Stadtheide – Zukunftsprojekt Paderborn">
+  <meta property="og:description" content="Neues nachhaltiges Wohn- und Einkaufsquartier mit moderner Infrastruktur und Nahversorgung.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/imgs/p1.jpg">
 
-    body {
-      font-family: 'Figtree', sans-serif;
-    }
-
-    h1,
-    h2,
-    h3,
-    .font-display {
-      font-family: 'Syne', sans-serif;
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .65s cubic-bezier(.4, 0, .2, 1), transform .65s cubic-bezier(.4, 0, .2, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay-1 {
-      transition-delay: .1s;
-    }
-
-    .delay-2 {
-      transition-delay: .2s;
-    }
-
-    .delay-3 {
-      transition-delay: .3s;
-    }
-
-    /* Nav */
-    #nav {
-      transition: background .3s, box-shadow .3s;
-    }
-
-    #nav.scrolled {
-      background: rgba(255, 255, 255, .97);
-      box-shadow: 0 1px 0 #e5e7eb;
-    }
-
-    .nav-link {
-      font-family: 'Syne', sans-serif;
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: white;
-      position: relative;
-      transition: color .2s;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 100%;
-      height: 1px;
-      background: #111;
-      transition: right .3s cubic-bezier(.4, 0, .2, 1);
-    }
-
-    .nav-link:hover {
-      color: #111;
-    }
-
-    .nav-link:hover::after {
-      right: 0;
-    }
-
-    /* Label */
-    .label {
-      font-family: 'Syne', sans-serif;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    /* Stat number */
-    .stat-n {
-      font-family: 'Syne', sans-serif;
-      font-weight: 300;
-      line-height: 1;
-    }
-
-    /* Accordion */
-    .acc-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .4s cubic-bezier(.4, 0, .2, 1);
-    }
-
-    .acc-body.open {
-      max-height: 300px;
-    }
-
-    .acc-icon {
-      transition: transform .35s;
-    }
-
-    .acc-icon.open {
-      transform: rotate(45deg);
-    }
-
-    /* Progress bars */
-    .bar {
-      width: 0;
-      transition: width 1.1s cubic-bezier(.4, 0, .2, 1);
-    }
-
-    .bar.go {
-      width: var(--w);
-    }
-
-    /* Form fields */
-    .field {
-      border: none;
-      border-bottom: 1px solid #d1d5db;
-      background: transparent;
-      width: 100%;
-      padding-bottom: .75rem;
-      font-family: 'Figtree', sans-serif;
-      font-size: .95rem;
-      outline: none;
-      transition: border-color .25s;
-      color: #111;
-    }
-
-    .field:focus {
-      border-color: #111;
-    }
-
-    .field::placeholder {
-      color: #9ca3af;
-    }
-
-    /* Image hover zoom */
-    .img-zoom {
-      overflow: hidden;
-    }
-
-    .img-zoom img {
-      transition: transform .65s cubic-bezier(.4, 0, .2, 1);
-      display: block;
-    }
-
-    .img-zoom:hover img {
-      transform: scale(1.04);
-    }
-
-    /* Mobile menu */
-    #mob-menu {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height .35s ease, opacity .3s;
-    }
-
-    #mob-menu.open {
-      max-height: 400px;
-      opacity: 1;
-    }
-
-    /* Map */
-    #map {
-      z-index: 0;
-    }
-  </style>
+  <link rel="stylesheet" crossorigin href="/assets/index-BE_GHBPG.css">
 </head>
 
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
 
-  <!-- ══════════════════════════════
-       HEADER
-  ══════════════════════════════ -->
-  <header id="nav" class="fixed top-0 w-full z-50 bg-black bg-opacity-50 ">
-    <div class="w-full px-8 lg:px-10 py-5 flex justify-between items-center">
-      <a href="#hero" class="label text-gray-900 hover:text-gray-500 transition-colors tracking-widest">
-        Quartier Stadtheide
-      </a>
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur shadow-sm z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
 
-      <nav class="hidden md:flex gap-10">
-        <a href="#projekt" class="nav-link">Projekt</a>
-        <a href="#fakten" class="nav-link">Fakten</a>
-        <a href="#nahversorgung" class="nav-link">Nahversorgung</a>
-        <a href="#wohnen" class="nav-link">Wohnen</a>
-        <a href="#nachhaltigkeit" class="nav-link">Nachhaltigkeit</a>
-        <a href="#lage" class="nav-link">Lage</a>
-        <a href="#kontakt" class="nav-link">Kontakt</a>
-      </nav>
+      <div class="font-bold text-lg">Quartier Stadtheide</div>
 
-      <button id="burger" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menü">
-        <span id="b1" class="block w-6 h-px bg-gray-900 transition-all duration-300"></span>
-        <span id="b2" class="block w-6 h-px bg-gray-900 transition-all duration-300"></span>
-        <span id="b3" class="block w-4 h-px bg-gray-900 transition-all duration-300"></span>
-      </button>
-    </div>
-
-    <div id="mob-menu" class="md:hidden bg-white border-t border-gray-100">
-      <div class="flex flex-col px-8 py-4 gap-4">
-        <a href="#projekt" class="nav-link py-1">Projekt</a>
-        <a href="#fakten" class="nav-link py-1">Fakten</a>
-        <a href="#nahversorgung" class="nav-link py-1">Nahversorgung</a>
-        <a href="#wohnen" class="nav-link py-1">Wohnen</a>
-        <a href="#nachhaltigkeit" class="nav-link py-1">Nachhaltigkeit</a>
-        <a href="#lage" class="nav-link py-1">Lage</a>
-        <a href="#kontakt" class="nav-link py-1">Kontakt</a>
+      <div class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="#hero" class="hover:text-blue-600">Start</a>
+        <a href="#projekt" class="hover:text-blue-600">Projekt</a>
+        <a href="#vorteile" class="hover:text-blue-600">Versorgung</a>
+        <a href="#wohnen" class="hover:text-blue-600">Wohnen</a>
+        <a href="#nachhaltigkeit" class="hover:text-blue-600">Nachhaltigkeit</a>
+        <a href="#facts" class="hover:text-blue-600">Zahlen</a>
+        <a href="#kontakt" class="hover:text-blue-600">Kontakt</a>
       </div>
+
     </div>
-  </header>
+  </nav>
 
+  <!-- HERO -->
+  <section id="hero" class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('./assets/imgs/p1.jpg');">
 
-  <!-- ══════════════════════════════
-       HERO
-  ══════════════════════════════ -->
-  <section id="hero" class="h-screen relative flex items-center">
-    <img src="p1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="" />
-    <div class="absolute inset-0 bg-black/35"></div>
+    <div class="bg-black/60 text-white p-10 rounded-xl text-center max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Quartier Stadtheide</h1>
+      <p class="text-lg">Ein neues urbanes Quartier für Wohnen, Einkaufen und Lebensqualität in Paderborn</p>
+    </div>
 
-    <div class="relative z-10 w-full px-8 lg:px-10">
-      <div class="max-w-3xl bg-black bg-opacity-50 rounded-md p-4">
-        <p class="label text-white/55 mb-6">Stadtentwicklung Paderborn · Stadtheide</p>
-        <h1 class="text-5xl md:text-7xl font-light leading-tight text-white mb-8">
-          Ein neuer Ort<br />zum Leben entsteht
-        </h1>
-        <p class="text-lg text-white/75 mb-10 max-w-xl font-body font-light leading-relaxed">
-          Nahversorgung, nachhaltiges Wohnen und urbane Lebensqualität entstehen auf rund 15.000 m² im Herzen der Stadtheide.
+  </section>
+
+  <!-- PROJEKT -->
+  <section id="projekt" class="py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-semibold mb-6">Ein neues Quartier entsteht</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Auf rund 15.000 m² entsteht ein modernes Wohn- und Einkaufsquartier, das Nahversorgung, Wohnen und Nachhaltigkeit verbindet. Ziel ist eine spürbare Aufwertung der Stadtheide.
+      </p>
+    </div>
+  </section>
+
+  <section id="bauprojekt" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- TEXT -->
+      <div>
+        <h2 class="text-3xl font-semibold mb-4">Das Bauprojekt</h2>
+
+        <p class="mb-4 text-gray-700 leading-relaxed">
+          Das Quartier Stadtheide wird als modernes, gemischt genutztes Stadtquartier entwickelt.
+          Ziel ist eine hochwertige Verbindung aus Wohnen, Einkaufen und nachhaltiger Infrastruktur.
         </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#projekt" class="border border-white text-white px-8 py-3.5 label text-xs tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-            Projekt entdecken
-          </a>
-          <a href="#kontakt" class="border border-white/40 text-white/80 px-8 py-3.5 label text-xs tracking-widest hover:border-white hover:text-white transition-all duration-300">
-            Fragen stellen
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Stats bar -->
-    <div class="absolute bottom-0 left-0 right-0 z-10 border-t border-white/15 bg-black/25 backdrop-blur-sm">
-      <div class="w-full px-8 lg:px-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-          <div class="py-5 px-6 first:pl-0">
-            <div class="stat-n text-white text-3xl md:text-4xl">15.000</div>
-            <div class="text-white/45 text-xs font-body mt-1">m² Gesamtfläche</div>
-          </div>
-          <div class="py-5 px-6">
-            <div class="stat-n text-white text-3xl md:text-4xl">70</div>
-            <div class="text-white/45 text-xs font-body mt-1">Wohnungen</div>
-          </div>
-          <div class="py-5 px-6">
-            <div class="stat-n text-white text-3xl md:text-4xl">200+</div>
-            <div class="text-white/45 text-xs font-body mt-1">Tiefgaragenplätze</div>
-          </div>
-          <div class="py-5 px-6">
-            <div class="stat-n text-white text-3xl md:text-4xl">2027</div>
-            <div class="text-white/45 text-xs font-body mt-1">Baubeginn</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <p class="mb-6 text-gray-700 leading-relaxed">
+          Die Gebäude werden in aufgelockerter Bauweise errichtet und orientieren sich in ihrer Höhe an der bestehenden Nachbarschaft.
+          So entsteht ein harmonisches Stadtbild ohne Überdimensionierung.
+        </p>
 
+        <!-- FACTS INLINE -->
+        <div class="grid grid-cols-2 gap-6">
 
-  <!-- ══════════════════════════════
-       VISION
-  ══════════════════════════════ -->
-  <section id="projekt" class="py-32">
-    <div class="max-w-3xl mx-auto px-8 lg:px-10 text-center">
-      <p class="label text-gray-400 mb-5 reveal">Das Projekt</p>
-      <h2 class="text-4xl md:text-5xl font-light mb-8 leading-tight reveal delay-1">Mehr als ein Bauprojekt</h2>
-      <p class="text-gray-500 text-lg leading-relaxed font-body font-light reveal delay-2">
-        Das Quartier Stadtheide schafft auf rund 15.000 m² einen neuen städtischen Mittelpunkt in Paderborn. Vollwertige Nahversorgung, zeitgemäßes Wohnen und ein klares Bekenntnis zur Nachhaltigkeit — alles an einem Ort, das langfristig dem Stadtteil zugute kommt.
-      </p>
-    </div>
-  </section>
-
-  <!-- Image split -->
-  <section class="grid md:grid-cols-2">
-    <div class="img-zoom"><img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2070" class="w-full h-[500px] object-cover" alt="" /></div>
-    <div class="img-zoom"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=2070" class="w-full h-[500px] object-cover" alt="" /></div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       FAKTEN
-  ══════════════════════════════ -->
-  <section id="fakten" class="py-32 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-8 lg:px-10">
-      <p class="label text-gray-400 mb-5 text-center reveal">Eckdaten</p>
-      <h2 class="text-4xl md:text-5xl font-light mb-16 text-center leading-tight reveal delay-1">Das Wesentliche auf einen Blick</h2>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-        <div class="bg-white p-10 reveal delay-1">
-          <div class="stat-n text-5xl text-gray-900 mb-3">15.000</div>
-          <div class="label text-xs text-green-700 mb-3">m² Gesamtfläche</div>
-          <p class="text-gray-400 text-sm leading-relaxed font-body">Gesamtareal mit Einzelhandel, Wohnen, Tiefgarage und Außenanlagen.</p>
-        </div>
-        <div class="bg-white p-10 reveal delay-2">
-          <div class="stat-n text-5xl text-gray-900 mb-3">5.000</div>
-          <div class="label text-xs text-green-700 mb-3">m² Wohnfläche</div>
-          <p class="text-gray-400 text-sm leading-relaxed font-body">Bis zu 70 Wohnungen in ruhiger Lage über dem Einzelhandelsgeschoss.</p>
-        </div>
-        <div class="bg-white p-10 reveal delay-3">
-          <div class="stat-n text-5xl text-gray-900 mb-3">200+</div>
-          <div class="label text-xs text-green-700 mb-3">Stellplätze</div>
-          <p class="text-gray-400 text-sm leading-relaxed font-body">Ebenerdige Zufahrt in die Tiefgarage für Kunden und Bewohner.</p>
-        </div>
-        <div class="bg-white p-10 reveal delay-1">
-          <div class="stat-n text-5xl text-gray-900 mb-3">3</div>
-          <div class="label text-xs text-green-700 mb-3">Einzelhändler im EG</div>
-          <p class="text-gray-400 text-sm leading-relaxed font-body">Rossmann, Lidl und Edeka bilden eine vollständige Nahversorgungsachse.</p>
-        </div>
-        <div class="bg-white p-10 reveal delay-2">
-          <div class="stat-n text-5xl text-gray-900 mb-3">~200</div>
-          <div class="label text-xs text-green-700 mb-3">kWp Photovoltaik</div>
-          <p class="text-gray-400 text-sm leading-relaxed font-body">Eigene Energieerzeugung auf dem Dach, ergänzt durch Luftwärmepumpen.</p>
-        </div>
-        <div class="bg-white p-10 reveal delay-3">
-          <div class="stat-n text-5xl text-gray-900 mb-3">2027</div>
-          <div class="label text-xs text-green-700 mb-3">Geplanter Baustart</div>
-          <p class="text-gray-400 text-sm leading-relaxed font-body">Planungsphase läuft; Bürgerinformation in Vorbereitung.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       NAHVERSORGUNG
-  ══════════════════════════════ -->
-  <section id="nahversorgung" class="py-32">
-    <div class="max-w-5xl mx-auto px-8 lg:px-10">
-      <div class="grid md:grid-cols-2 gap-16 items-start">
-
-        <div>
-          <p class="label text-gray-400 mb-5 reveal">Erdgeschoss</p>
-          <h2 class="text-4xl md:text-5xl font-light mb-6 leading-tight reveal delay-1">Alles, was die Stadtheide braucht.</h2>
-          <p class="text-gray-500 font-body font-light leading-relaxed mb-10 reveal delay-2">
-            Das Erdgeschoss vereint drei etablierte Einzelhändler unter einem Dach — eine der vollständigsten Nahversorgungsstrukturen im Stadtgebiet Paderborn.
-          </p>
-
-          <div class="border-t border-gray-200 reveal delay-2">
-            <!-- Rossmann -->
-            <div class="border-b border-gray-200">
-              <button class="acc-btn w-full flex items-center justify-between py-5" data-target="a-rossmann">
-                <div class="flex items-center gap-4">
-                  <div class="w-9 h-9 bg-gray-100 flex items-center justify-center shrink-0">
-                    <span class="label text-xs text-gray-500">R</span>
-                  </div>
-                  <div class="text-left">
-                    <div class="font-display font-medium text-sm">Rossmann</div>
-                    <div class="text-xs text-gray-400 font-body">Drogerie & Kosmetik</div>
-                  </div>
-                </div>
-                <svg class="acc-icon w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6" />
-                </svg>
-              </button>
-              <div class="acc-body" id="a-rossmann">
-                <div class="pb-5 pl-[52px]">
-                  <p class="text-gray-400 font-body text-sm leading-relaxed mb-3">Der neue Rossmann-Markt ist eine Besonderheit: Als erster Standort in Deutschland, der speziell auf die Anfahrbarkeit mit dem Fahrzeug ausgerichtet ist, setzt er einen neuen Standard im stationären Drogerie-Einzelhandel.</p>
-                  <span class="inline-block bg-green-50 text-green-700 label text-xs px-3 py-1">Erster anfahrbarer Rossmann in Deutschland</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lidl -->
-            <div class="border-b border-gray-200">
-              <button class="acc-btn w-full flex items-center justify-between py-5" data-target="a-lidl">
-                <div class="flex items-center gap-4">
-                  <div class="w-9 h-9 bg-gray-100 flex items-center justify-center shrink-0">
-                    <span class="label text-xs text-gray-500">L</span>
-                  </div>
-                  <div class="text-left">
-                    <div class="font-display font-medium text-sm">Lidl</div>
-                    <div class="text-xs text-gray-400 font-body">Lebensmittel-Discounter</div>
-                  </div>
-                </div>
-                <svg class="acc-icon w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6" />
-                </svg>
-              </button>
-              <div class="acc-body" id="a-lidl">
-                <div class="pb-5 pl-[52px]">
-                  <p class="text-gray-400 font-body text-sm leading-relaxed">Der bestehende Lidl-Standort im Stadtteil wird hierher verlagert — mit verbesserten Rahmenbedingungen, moderner Ausstattung und optimaler Erreichbarkeit.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Edeka -->
-            <div class="border-b border-gray-200">
-              <button class="acc-btn w-full flex items-center justify-between py-5" data-target="a-edeka">
-                <div class="flex items-center gap-4">
-                  <div class="w-9 h-9 bg-gray-100 flex items-center justify-center shrink-0">
-                    <span class="label text-xs text-gray-500">E</span>
-                  </div>
-                  <div class="text-left">
-                    <div class="font-display font-medium text-sm">Edeka</div>
-                    <div class="text-xs text-gray-400 font-body">Vollsortimenter</div>
-                  </div>
-                </div>
-                <svg class="acc-icon w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6" />
-                </svg>
-              </button>
-              <div class="acc-body" id="a-edeka">
-                <div class="pb-5 pl-[52px]">
-                  <p class="text-gray-400 font-body text-sm leading-relaxed">Ein Edeka-Vollsortimenter mit frischen Waren, Feinkost und regionalen Produkten komplettiert das Angebot und deckt den gesamten täglichen Bedarf der Anwohner ab.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="img-zoom reveal delay-2">
-          <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=900&q=80&auto=format&fit=crop" class="w-full aspect-[3/4] object-cover" alt="Nahversorgung" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       WOHNEN — dark
-  ══════════════════════════════ -->
-  <section id="wohnen" class="bg-gray-900 text-white py-32">
-    <div class="max-w-5xl mx-auto px-8 lg:px-10">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="img-zoom reveal delay-2">
-          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80&auto=format&fit=crop" class="w-full aspect-[3/4] object-cover" alt="Wohnen" />
-        </div>
-
-        <div class="reveal">
-          <p class="label text-white/40 mb-5">Wohnen</p>
-          <h2 class="text-4xl md:text-5xl font-light mb-6 leading-tight">Leben über der Stadt.</h2>
-          <p class="text-white/55 font-body font-light leading-relaxed mb-10">
-            Auf ca. 5.000 m² Wohnfläche entstehen bis zu 70 Wohnungen im Obergeschoss — ruhig gelegen, separat erschlossen und direkt mit der Tiefgarage verbunden.
-          </p>
-          <div class="grid grid-cols-2 gap-px bg-white/10 mb-10">
-            <div class="bg-gray-900 p-6">
-              <div class="stat-n text-4xl text-white mb-2">5.000</div>
-              <div class="label text-white/35 text-xs">m² Wohnfläche</div>
-            </div>
-            <div class="bg-gray-900 p-6">
-              <div class="stat-n text-4xl text-white mb-2">bis 70</div>
-              <div class="label text-white/35 text-xs">Wohneinheiten</div>
-            </div>
-            <div class="bg-gray-900 p-6">
-              <div class="stat-n text-4xl text-white mb-2">OG</div>
-              <div class="label text-white/35 text-xs">Separat erschlossen</div>
-            </div>
-            <div class="bg-gray-900 p-6">
-              <div class="stat-n text-4xl text-white mb-2">TG</div>
-              <div class="label text-white/35 text-xs">Eigene Stellplätze</div>
-            </div>
-          </div>
-          <a href="#kontakt" class="border border-white/30 text-white px-8 py-3.5 label text-xs tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300 inline-block">
-            Interesse bekunden
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       NACHHALTIGKEIT
-  ══════════════════════════════ -->
-  <section id="nachhaltigkeit" class="py-32 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-8 lg:px-10">
-      <p class="label text-gray-400 mb-5 text-center reveal">Nachhaltigkeit</p>
-      <h2 class="text-4xl md:text-5xl font-light mb-16 text-center leading-tight reveal delay-1">Gebaut für morgen.</h2>
-
-      <div class="grid md:grid-cols-3 gap-px bg-gray-200 reveal delay-2">
-        <div class="bg-white p-10">
-          <div class="w-10 h-10 border border-gray-200 flex items-center justify-center mb-6">
-            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="4" stroke-width="1.5" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2v2m0 16v2M2 12h2m16 0h2m-3.22-6.78-1.42 1.42M6.64 17.36l-1.42 1.42M17.36 17.36l-1.42-1.42M6.64 6.64 5.22 5.22" />
-            </svg>
-          </div>
-          <div class="label text-green-700 text-xs mb-2">Photovoltaik</div>
-          <div class="font-display font-light text-2xl text-gray-900 mb-4">~200 kWp</div>
-          <div class="w-full bg-gray-100 h-1 mb-4 overflow-hidden">
-            <div class="bar h-full bg-green-600" style="--w:80%"></div>
-          </div>
-          <p class="text-gray-400 font-body text-sm leading-relaxed">Großflächige Solaranlage auf dem Flachdach erzeugt erneuerbare Energie für die gesamte Liegenschaft.</p>
-        </div>
-        <div class="bg-white p-10">
-          <div class="w-10 h-10 border border-gray-200 flex items-center justify-center mb-6">
-            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <div class="label text-green-700 text-xs mb-2">Wärmeerzeugung</div>
-          <div class="font-display font-light text-2xl text-gray-900 mb-4">Luftwärmepumpen</div>
-          <div class="w-full bg-gray-100 h-1 mb-4 overflow-hidden">
-            <div class="bar h-full bg-gray-500" style="--w:65%"></div>
-          </div>
-          <p class="text-gray-400 font-body text-sm leading-relaxed">Effiziente Wärmeversorgung ohne fossile Energieträger — für Wohnen und Gewerbe.</p>
-        </div>
-        <div class="bg-white p-10">
-          <div class="w-10 h-10 border border-gray-200 flex items-center justify-center mb-6">
-            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-            </svg>
-          </div>
-          <div class="label text-green-700 text-xs mb-2">Dachfläche</div>
-          <div class="font-display font-light text-2xl text-gray-900 mb-4">Begrünung & Garten</div>
-          <div class="w-full bg-gray-100 h-1 mb-4 overflow-hidden">
-            <div class="bar h-full bg-green-400" style="--w:90%"></div>
-          </div>
-          <p class="text-gray-400 font-body text-sm leading-relaxed">Extensive Dachbegrünung verbessert die Klimabilanz und schafft Freiraum für Bewohner.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       GALLERY
-  ══════════════════════════════ -->
-  <section class="grid grid-cols-2 md:grid-cols-4 gap-1">
-    <div class="img-zoom"><img src="https://images.unsplash.com/photo-1507089947367-19c1da9775ae?q=80&w=800" class="w-full h-64 object-cover" alt="" /></div>
-    <div class="img-zoom"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=800" class="w-full h-64 object-cover" alt="" /></div>
-    <div class="img-zoom"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=800" class="w-full h-64 object-cover" alt="" /></div>
-    <div class="img-zoom"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=800" class="w-full h-64 object-cover" alt="" /></div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       LAGE
-  ══════════════════════════════ -->
-  <section id="lage" class="py-32">
-    <div class="max-w-4xl mx-auto px-8 lg:px-10 text-center mb-16">
-      <p class="label text-gray-400 mb-5 reveal">Standort</p>
-      <h2 class="text-4xl md:text-5xl font-light mb-6 leading-tight reveal delay-1">Die Lage</h2>
-      <p class="text-gray-500 text-lg leading-relaxed font-body font-light reveal delay-2">
-        Ruhig gelegen und hervorragend angebunden — die Stadtheide in Paderborn verbindet gewachsene Stadtstruktur mit einer neuen Mitte für den Alltag.
-      </p>
-    </div>
-
-    <div class="max-w-4xl mx-auto px-8 lg:px-10">
-      <div class="grid grid-cols-3 gap-px bg-gray-200 mb-1 reveal delay-2">
-        <div class="bg-white px-8 py-7 text-center">
-          <div class="label text-green-700 text-xs mb-1">Standort</div>
-          <div class="font-display font-light text-gray-800">Stadtheide, Paderborn</div>
-        </div>
-        <div class="bg-white px-8 py-7 text-center">
-          <div class="label text-green-700 text-xs mb-1">Anbindung</div>
-          <div class="font-display font-light text-gray-800">ÖPNV & Straße</div>
-        </div>
-        <div class="bg-white px-8 py-7 text-center">
-          <div class="label text-green-700 text-xs mb-1">Einzugsbereich</div>
-          <div class="font-display font-light text-gray-800">Stadtheide & Umland</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Map full width -->
-  <section class="w-full h-[500px]">
-    <div id="map" class="w-full h-full"></div>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       CTA
-  ══════════════════════════════ -->
-  <section class="py-32 text-center">
-    <p class="label text-gray-400 mb-5 reveal">Nächster Schritt</p>
-    <h2 class="text-4xl md:text-5xl font-light mb-8 reveal delay-1">Interesse geweckt?</h2>
-    <a href="#kontakt" class="border border-gray-900 px-10 py-4 label text-xs tracking-widest hover:bg-gray-900 hover:text-white transition-all duration-300 inline-block reveal delay-2">
-      Jetzt anfragen
-    </a>
-  </section>
-
-
-  <!-- ══════════════════════════════
-       KONTAKT
-  ══════════════════════════════ -->
-  <section id="kontakt" class="py-32 bg-gray-50">
-    <div class="max-w-xl mx-auto px-8 lg:px-10">
-      <p class="label text-gray-400 mb-5 reveal">Kontakt</p>
-      <h2 class="text-4xl md:text-5xl font-light mb-4 leading-tight reveal delay-1">Haben Sie Fragen?</h2>
-      <p class="text-gray-400 font-body font-light text-base mb-10 reveal delay-2">Wir antworten innerhalb von 3 Werktagen.</p>
-
-      <form id="contact-form" class="grid gap-8 reveal delay-2">
-        <div class="grid sm:grid-cols-2 gap-8">
           <div>
-            <label class="label text-gray-400 text-xs block mb-2">Vorname *</label>
-            <input type="text" name="vorname" required class="field" placeholder="Max" />
+            <p class="text-2xl font-bold text-blue-600">1,5 Jahre</p>
+            <p class="text-sm text-gray-600">Bauzeit</p>
           </div>
+
           <div>
-            <label class="label text-gray-400 text-xs block mb-2">Nachname *</label>
-            <input type="text" name="nachname" required class="field" placeholder="Mustermann" />
+            <p class="text-2xl font-bold text-blue-600">2027</p>
+            <p class="text-sm text-gray-600">Baustart</p>
           </div>
+
+          <div>
+            <p class="text-2xl font-bold text-blue-600">regional</p>
+            <p class="text-sm text-gray-600">Bauunternehmen</p>
+          </div>
+
+          <div>
+            <p class="text-2xl font-bold text-blue-600">>200</p>
+            <p class="text-sm text-gray-600">Stellplätze</p>
+          </div>
+
         </div>
+
+      </div>
+
+      <!-- IMAGE -->
+      <div>
+        <img src="/assets/imgs/p1.jpg" class="w-full h-full object-cover">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VORTEILE -->
+  <section id="vorteile" class="bg-white py-20">
+    <div class="max-w-6xl mx-auto px-4">
+
+      <h2 class="text-3xl font-semibold text-center mb-10">Neue Nahversorgung</h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow">
+          <h3 class="font-semibold mb-2">Rossmann</h3>
+          <p>Drogerie – mehr Komfort für alle.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow">
+          <h3 class="font-semibold mb-2">EDEKA Markt</h3>
+          <p>Großflächiger Vollsortimenter für hochwertige Nahversorgung.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow">
+          <h3 class="font-semibold mb-2">LIDL Umzug</h3>
+          <p>Zentrale Lage statt Gewerbegebiet – bessere Erreichbarkeit.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WOHNEN -->
+  <section id="wohnen" class="py-20">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+
+      <div>
+        <h2 class="text-3xl font-semibold mb-4">Moderner Wohnraum</h2>
+        <p class="mb-4">
+          Bis zu 70 Wohnungen entstehen in verschiedenen Größen und Konzepten – familienfreundlich, barrierearm und zukunftsorientiert.
+        </p>
+        <p>
+          Die Gebäude fügen sich harmonisch in die Umgebung ein und schaffen neuen Wohnraum ohne Überdimensionierung.
+        </p>
+      </div>
+
+      <img src="/assets/imgs/g1.png" class="w-full object-cover">
+
+    </div>
+  </section>
+
+
+  <!-- NACHHALTIGKEIT -->
+  <section id="nachhaltigkeit" class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+
+      <h2 class="text-3xl font-semibold mb-10">Nachhaltig geplant</h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
         <div>
-          <label class="label text-gray-400 text-xs block mb-2">E-Mail *</label>
-          <input type="email" name="email" required class="field" placeholder="max@email.de" />
+          <p class="font-bold text-xl mb-2">Photovoltaik</p>
+          <p>200 kWp zur lokalen Stromerzeugung</p>
         </div>
+
         <div>
-          <label class="label text-gray-400 text-xs block mb-2">Ich bin …</label>
-          <select name="rolle" class="field cursor-pointer text-gray-400">
-            <option value="">Bitte auswählen</option>
-            <option>Anwohner / Anwohnerin</option>
-            <option>Mietinteressent / -interessentin</option>
-            <option>Kaufinteressent / -interessentin</option>
-            <option>Vertreter der Presse</option>
-            <option>Sonstiges</option>
-          </select>
+          <p class="font-bold text-xl mb-2">Wärmepumpen</p>
+          <p>Effiziente und moderne Energieversorgung</p>
         </div>
+
         <div>
-          <label class="label text-gray-400 text-xs block mb-2">Nachricht *</label>
-          <textarea name="nachricht" required rows="5" class="field resize-none" placeholder="Ihre Frage oder Anmerkung …"></textarea>
+          <p class="font-bold text-xl mb-2">Gründächer</p>
+          <p>Verbessern Mikroklima und Aufenthaltsqualität</p>
         </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section id="facts" class="py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+
+      <h2 class="text-3xl font-semibold mb-10">Projekt in Zahlen</h2>
+
+      <div class="grid md:grid-cols-4 gap-8">
+
         <div>
-          <label class="flex items-start gap-3 cursor-pointer">
-            <input type="checkbox" required class="mt-1 w-4 h-4 accent-gray-900 shrink-0" />
-            <span class="text-gray-400 font-body text-xs leading-relaxed">Ich stimme der Verarbeitung meiner Daten zur Beantwortung meiner Anfrage zu. Die Daten werden nicht an Dritte weitergegeben.</span>
-          </label>
+          <p class="text-3xl font-bold">15.000 m²</p>
+          <p>Gesamtfläche</p>
         </div>
-        <button type="submit" id="submit-btn" class="w-full border border-gray-900 py-4 label text-xs tracking-widest hover:bg-gray-900 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
-          <span id="btn-txt">Anfrage senden</span>
+
+        <div>
+          <p class="text-3xl font-bold">70</p>
+          <p>Wohnungen</p>
+        </div>
+
+        <div>
+          <p class="text-3xl font-bold">200</p>
+          <p>Stellplätze</p>
+        </div>
+
+        <div>
+          <p class="text-3xl font-bold">2027</p>
+          <p>Baustart</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BILDER -->
+  <section class="w-full grid grid-cols-3">
+    <img src="/assets/imgs/g4.jpg" class="w-full h-72 object-cover">
+    <img src="/assets/imgs/g1.png" class="w-full h-72 object-cover">
+    <img src="/assets/imgs/g2.png" class="w-full h-72 object-cover">
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+
+      <h2 class="text-3xl font-semibold mb-8 text-center">Ihre Fragen</h2>
+
+      <form class="space-y-6">
+
+        <input type="text" placeholder="Name" class="w-full border p-3 rounded-lg">
+        <input type="email" placeholder="E-Mail" class="w-full border p-3 rounded-lg">
+        <textarea placeholder="Nachricht" rows="5" class="w-full border p-3 rounded-lg"></textarea>
+
+        <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+          Anfrage senden
         </button>
+
       </form>
 
-      <div id="form-ok" class="hidden py-20 text-center">
-        <div class="w-10 h-10 border border-green-600 flex items-center justify-center mx-auto mb-5">
-          <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 class="font-display text-2xl font-light text-gray-900 mb-3">Vielen Dank.</h3>
-        <p class="text-gray-400 font-body text-sm">Ihre Anfrage ist eingegangen. Wir melden uns innerhalb von 3 Werktagen.</p>
-      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-10 mt-20">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between text-sm">
 
-  <!-- ══════════════════════════════
-       FOOTER
-  ══════════════════════════════ -->
-  <footer class="py-10 border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-8 lg:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div>
-        <div class="label text-gray-900 text-xs tracking-widest">Quartier Stadtheide · Paderborn</div>
-        <div class="text-gray-400 font-body text-xs mt-1">Geplanter Baustart 2027 · ca. 15.000 m²</div>
+      <p>© 2026 Quartier Stadtheide</p>
+
+      <div class="flex gap-6">
+        <a href="#" class="hover:underline">Impressum</a>
+        <a href="#" class="hover:underline">Datenschutz</a>
       </div>
-      <div class="flex gap-8 text-xs text-gray-400 font-body">
-        <a href="#" class="hover:text-gray-900 transition-colors">Impressum</a>
-        <a href="#" class="hover:text-gray-900 transition-colors">Datenschutz</a>
-        <span>© 2025</span>
-      </div>
+
     </div>
   </footer>
 
-
-  <!-- ══════════════════════════════
-       JAVASCRIPT
-  ══════════════════════════════ -->
-  <script>
-    // Nav scroll state
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
-
-    // Mobile burger
-    const burger = document.getElementById('burger');
-    const mob = document.getElementById('mob-menu');
-    const b1 = document.getElementById('b1');
-    const b2 = document.getElementById('b2');
-    const b3 = document.getElementById('b3');
-    let mOpen = false;
-    burger.addEventListener('click', () =>
-    {
-      mOpen = !mOpen;
-      mob.classList.toggle('open', mOpen);
-      b1.style.transform = mOpen ? 'translateY(6px) rotate(45deg)' : '';
-      b2.style.opacity = mOpen ? '0' : '';
-      b3.style.transform = mOpen ? 'translateY(-6px) rotate(-45deg)' : '';
-      b3.style.width = mOpen ? '24px' : '';
-    });
-    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () =>
-    {
-      mOpen = false; mob.classList.remove('open');
-      b1.style.transform = b2.style.opacity = b3.style.transform = b3.style.width = '';
-    }));
-
-    // Scroll reveal
-    const revObs = new IntersectionObserver(entries =>
-    {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
-    }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-
-    // Progress bars
-    const barObs = new IntersectionObserver(entries =>
-    {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('go'); barObs.unobserve(e.target); } });
-    }, { threshold: .3 });
-    document.querySelectorAll('.bar').forEach(b => barObs.observe(b));
-
-    // Accordion
-    document.querySelectorAll('.acc-btn').forEach(btn =>
-    {
-      btn.addEventListener('click', () =>
-      {
-        const id = btn.getAttribute('data-target');
-        const body = document.getElementById(id);
-        const icon = btn.querySelector('.acc-icon');
-        const isOpen = body.classList.contains('open');
-        document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-        document.querySelectorAll('.acc-icon').forEach(i => i.classList.remove('open'));
-        if (!isOpen) { body.classList.add('open'); icon.classList.add('open'); }
-      });
-    });
-
-    // Form
-    document.getElementById('contact-form').addEventListener('submit', e =>
-    {
-      e.preventDefault();
-      document.getElementById('btn-txt').textContent = 'Wird gesendet …';
-      const btn = document.getElementById('submit-btn');
-      btn.disabled = true; btn.classList.add('opacity-60');
-      setTimeout(() =>
-      {
-        document.getElementById('contact-form').style.display = 'none';
-        document.getElementById('form-ok').classList.remove('hidden');
-      }, 1200);
-    });
-
-    // Leaflet map
-    window.addEventListener('load', () =>
-    {
-      const map = L.map('map', { center: [51.7356, 8.7191], zoom: 14, scrollWheelZoom: false });
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-        subdomains: 'abcd', maxZoom: 20
-      }).addTo(map);
-
-      const icon = L.divIcon({
-        className: '',
-        html: `<div style="width:36px;height:36px;background:#111;display:flex;align-items:center;justify-content:center;border:2px solid white;box-shadow:0 4px 12px rgba(0,0,0,.2)">
-          <svg width="14" height="14" fill="none" stroke="white" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
-          </svg>
-        </div>`,
-        iconSize: [36, 36], iconAnchor: [18, 36], popupAnchor: [0, -40]
-      });
-
-      L.marker([51.7356, 8.7191], { icon })
-        .addTo(map)
-        .bindPopup(`<div style="font-family:Syne,sans-serif;font-size:12px;line-height:1.5"><strong>Quartier Stadtheide</strong><br/><span style="color:#9ca3af">Stadtheide, Paderborn</span></div>`)
-        .openPopup();
-    });
-  </script>
 </body>
 
 </html>
