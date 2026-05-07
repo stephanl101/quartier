@@ -15,40 +15,56 @@
   <meta property="og:description" content="Neues nachhaltiges Wohn- und Einkaufsquartier mit moderner Infrastruktur und Nahversorgung.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./assets/imgs/p1.jpg">
-  <script type="module" crossorigin src="/quartier/assets/index-62LhX0bt.js"></script>
-  <link rel="stylesheet" crossorigin href="/quartier/assets/index-DT6y6IDt.css">
+  <script type="module" crossorigin src="/quartier/assets/index-Bkyz1vgd.js"></script>
+  <link rel="stylesheet" crossorigin href="/quartier/assets/index-8tOZNFk-.css">
 </head>
 
 <body class="bg-gray-50 text-gray-800 scroll-smooth">
 
   <!-- NAV -->
-  <nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur shadow-sm z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+  <nav class="fixed top-0 left-0 w-full bg-white backdrop-blur shadow-sm z-50">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
 
-      <div class="font-bold text-lg">Quartier Stadtheide</div>
+      <div class="font-bold text-lg"><img src="/quartier/assets/imgs/l3.png" class="w-64"></div>
 
-      <div class="hidden md:flex gap-6 text-sm font-medium">
-        <a href="#hero" class="hover:text-blue-600">Start</a>
-        <a href="#projekt" class="hover:text-blue-600">Projekt</a>
-        <a href="#bauprojekt" class="hover:text-blue-600">Bauprojekt</a>
-        <a href="#vorteile" class="hover:text-blue-600">Versorgung</a>
-        <a href="#wohnen" class="hover:text-blue-600">Wohnen</a>
-        <a href="#nachhaltigkeit" class="hover:text-blue-600">Nachhaltigkeit</a>
-        <a href="#facts" class="hover:text-blue-600">Zahlen</a>
-        <a href="#galerie" class="hover:text-blue-600">Galerie</a>
-        <a href="#kontakt" class="hover:text-blue-600">Kontakt</a>
+      <div class="hidden md:flex gap-6 text-md font-medium">
+        <a href="#hero" class="text-gray-800 hover:text-black">Start</a>
+        <a href="#projekt" class="text-gray-800 hover:text-black">Projekt</a>
+        <a href="#bauprojekt" class="text-gray-800 hover:text-black">Bauprojekt</a>
+        <a href="#vorteile" class="text-gray-800 hover:text-black">Versorgung</a>
+        <a href="#wohnen" class="text-gray-800 hover:text-black">Wohnen</a>
+        <a href="#facts" class="text-gray-800 hover:text-black">Zahlen</a>
+        <a href="#kontakt" class="text-gray-800 hover:text-black">Kontakt</a>
       </div>
 
     </div>
   </nav>
 
   <!-- HERO -->
-  <section id="hero" class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('./assets/imgs/p1.jpg');">
+  <section id="hero" class="relative h-screen bg-cover bg-center flex items-end" style="background-image: url('./assets/imgs/p1.jpg');">
 
-    <div class="bg-black/60 text-white p-10 rounded-xl text-center max-w-2xl">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Quartier Stadtheide</h1>
-      <p class="text-lg">Ein modernes, lebendiges Quartier mit starker Nahversorgung, attraktiven Wohnflächen und nachhaltiger Planung – im Herzen der Stadtheide.</p>
+    <!-- leichter dunkler Verlauf für bessere Lesbarkeit -->
+    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"></div>
+
+    <!-- Content unten links -->
+    <div class="relative w-full mx-auto ml-20">
+
+      <div class=" text-white text-left">
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
+          Quartier Stadtheide
+        </h1>
+
+        <p class="text-lg text-white/90 leading-relaxed">
+          Ein modernes, lebendiges Quartier mit starker Nahversorgung,
+          attraktiven Wohnflächen und nachhaltiger Planung – im Herzen der Stadtheide.
+        </p>
+      </div>
+
     </div>
+
+    <!-- optischer Abschluss unten -->
+    <div class="absolute bottom-0 left-0 w-full h-6 bg-linear-to-t from-black/10 to-transparent"></div>
 
   </section>
 
@@ -56,8 +72,21 @@
   <section id="projekt" class="py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-3xl font-semibold mb-6">Ein neues Quartier entsteht</h2>
+      <p class="text-lg text-gray-700 leading-relaxed mb-6">
+        Mit dem neuen Quartier an der Ecke Schwabenweg / Dr. Rörig Damm entsteht in der Stadtheide ein modernes,
+        zukunftsorientiertes Wohn- und Einkaufszentrum, das den Stadtteil nachhaltig stärken wird.
+        Auf rund 15.000 Quadratmetern entwickeln die Paderborner Investoren Philipp Fecke,
+        Philipp Rieländer und Jörg Stratmann ein durchdachtes Konzept, das Nahversorgung,
+        neuen Wohnraum und nachhaltige Bauweise intelligent miteinander verbindet.
+      </p>
+
       <p class="text-lg text-gray-700 leading-relaxed">
-        Auf rund 15.000 m² entsteht ein modernes Wohn- und Einkaufsquartier, das Nahversorgung, Wohnen und Nachhaltigkeit miteinander verbindet. Geplant ist ein attraktives Umfeld für Familien, Berufstätige und Einkaufsgäste – mit kurzen Wegen, guter Anbindung und hoher Aufenthaltsqualität.
+        Die Stadtheide ist ein gewachsener und beliebter Stadtteil mit großem Entwicklungspotenzial.
+        Genau hier setzt das Projekt an: Kurze Wege, eine wohnortnahe Versorgung und moderne Wohnangebote
+        sollen den Alltag der Menschen spürbar erleichtern und die Lebensqualität deutlich erhöhen.
+        Durch die Kombination aus Einkaufen, Wohnen und nachhaltiger Infrastruktur entsteht ein lebendiges Quartier,
+        das sich harmonisch in die bestehende Umgebung einfügt und gleichzeitig neue Impulse
+        für die Entwicklung des Stadtteils setzt.
       </p>
     </div>
   </section>
@@ -81,22 +110,22 @@
         <div class="grid grid-cols-2 gap-6">
 
           <div>
-            <p class="text-2xl font-bold text-blue-600">1,5 Jahre</p>
+            <p class="text-2xl font-bold">1,5 Jahre</p>
             <p class="text-sm text-gray-600">Bauzeit</p>
           </div>
 
           <div>
-            <p class="text-2xl font-bold text-blue-600">2027</p>
+            <p class="text-2xl font-bold">2027</p>
             <p class="text-sm text-gray-600">Baustart</p>
           </div>
 
           <div>
-            <p class="text-2xl font-bold text-blue-600">regional</p>
+            <p class="text-2xl font-bold">regional</p>
             <p class="text-sm text-gray-600">Bauunternehmen</p>
           </div>
 
           <div>
-            <p class="text-2xl font-bold text-blue-600">>200</p>
+            <p class="text-2xl font-bold">>200</p>
             <p class="text-sm text-gray-600">Stellplätze</p>
           </div>
 
@@ -121,18 +150,21 @@
       <div class="grid md:grid-cols-3 gap-8">
 
         <div class="bg-gray-50 p-6 rounded-xl shadow">
-          <h3 class="font-semibold mb-2">Rossmann</h3>
-          <p>Drogerie mit breiter Auswahl für Gesundheit, Pflege und Haushalt – direkt im Quartier.</p>
+          <h3 class="font-semibold mb-2">EDEKA Markt</h3>
+          <p>Der neue EDEKA Vollsortimenter bietet eine große Auswahl an frischen Lebensmitteln,
+            regionalen Produkten und hochwertigen Spezialitäten für eine umfassende Nahversorgung.</p>
         </div>
 
         <div class="bg-gray-50 p-6 rounded-xl shadow">
-          <h3 class="font-semibold mb-2">EDEKA Markt</h3>
-          <p>Vollsortimenter mit frischen Lebensmitteln, regionalen Produkten und einem neuen Einkaufserlebnis.</p>
+          <h3 class="font-semibold mb-2">Rossmann</h3>
+          <p>Mit dem neuen ROSSMANN-Drogeriemarkt zieht ein wichtiger Nahversorger in die Stadtheide ein.
+            Das Sortiment umfasst Pflege-, Gesundheits- und Haushaltsprodukte und sorgt für kurze Wege im Alltag.</p>
         </div>
 
         <div class="bg-gray-50 p-6 rounded-xl shadow">
           <h3 class="font-semibold mb-2">LIDL Umzug</h3>
-          <p>Zentrale Lage für schnellen und einfachen Einkauf, direkt im Quartier und gut erreichbar für die Nachbarschaft.</p>
+          <p>Der moderne LIDL-Markt wird zentral ins Quartier verlegt und ermöglicht damit kurze Wege,
+            schnelle Einkäufe und eine deutlich bessere Erreichbarkeit für die Nachbarschaft.</p>
         </div>
 
       </div>
@@ -163,8 +195,6 @@
   <section id="nachhaltigkeit" class="bg-gray-100 py-20">
     <div class="max-w-6xl mx-auto px-4 text-center">
 
-      <h2 class="text-3xl font-semibold mb-10">Nachhaltig geplant</h2>
-
       <div class="grid md:grid-cols-3 gap-8">
 
         <div>
@@ -188,7 +218,7 @@
   </section>
 
   <!-- FACTS -->
-  <section id="facts" class="py-20">
+  <section id="facts" class="pt-20">
     <div class="max-w-6xl mx-auto px-4 text-center">
 
       <h2 class="text-3xl font-semibold mb-10">Projekt in Zahlen</h2>
@@ -222,14 +252,14 @@
   </section>
 
   <!-- BILDER -->
-  <section id="galerie" class="w-full grid grid-cols-3">
+  <section id="galerie" class="w-full grid grid-cols-3 h-72 mt-0 mb-0">
     <img src="/quartier/assets/imgs/g4.jpg" class="w-full h-72 object-cover">
     <img src="/quartier/assets/imgs/g1.png" class="w-full h-72 object-cover">
     <img src="/quartier/assets/imgs/g2.png" class="w-full h-72 object-cover">
   </section>
 
   <!-- KONTAKT -->
-  <section id="kontakt" class="py-20 bg-white">
+  <section id="kontakt" class="py-40 m-0 bg-white">
     <div class="max-w-3xl mx-auto px-4">
 
       <h2 class="text-3xl font-semibold mb-6 text-center">Ihre Fragen</h2>
@@ -243,7 +273,7 @@
         <input type="email" placeholder="E-Mail" class="w-full border p-3 rounded-lg">
         <textarea placeholder="Nachricht" rows="5" class="w-full border p-3 rounded-lg"></textarea>
 
-        <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+        <button class="w-full bg-slate-800 text-white py-3 rounded-lg hover:bg-slate-700">
           Anfrage senden
         </button>
 
@@ -252,15 +282,21 @@
     </div>
   </section>
 
+  <!-- KARTE -->
+  <section id="lage" class="p-0 m-0">
+    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=8.7556529045105%2C51.73968945053031%2C8.764611482620241%2C51.74255942636751&amp;layer=mapnik&amp;marker=51.74112446123626%2C8.760132193565369" class="w-full">
+    </iframe>
+  </section>
+
   <!-- FOOTER -->
-  <footer class="bg-gray-900 text-white py-10 mt-20">
+  <footer class="bg-gray-900 text-white py-10">
     <div class="max-w-6xl mx-auto px-4 flex justify-between text-sm">
 
-      <p>© 2026 Quartier Stadtheide</p>
+      <p class="text-white">© 2026 Quartier Stadtheide</p>
 
       <div class="flex gap-6">
-        <a href="#" class="hover:underline">Impressum</a>
-        <a href="#" class="hover:underline">Datenschutz</a>
+        <a href="#" class="text-white hover:underline">Impressum</a>
+        <a href="#" class="text-white hover:underline">Datenschutz</a>
       </div>
 
     </div>
