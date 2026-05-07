@@ -15,18 +15,20 @@
   <meta property="og:description" content="Neues nachhaltiges Wohn- und Einkaufsquartier mit moderner Infrastruktur und Nahversorgung.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./assets/imgs/p1.jpg">
-  <script type="module" crossorigin src="/quartier/assets/index-Bkyz1vgd.js"></script>
-  <link rel="stylesheet" crossorigin href="/quartier/assets/index-8tOZNFk-.css">
+  <script type="module" crossorigin src="/quartier/assets/index-BW9OWdUW.js"></script>
+  <link rel="stylesheet" crossorigin href="/quartier/assets/index-C84xYILA.css">
 </head>
 
 <body class="bg-gray-50 text-gray-800 scroll-smooth">
-
-  <!-- NAV -->
   <nav class="fixed top-0 left-0 w-full bg-white backdrop-blur shadow-sm z-50">
     <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
 
-      <div class="font-bold text-lg"><img src="/quartier/assets/imgs/l3.png" class="w-64"></div>
+      <!-- Logo -->
+      <div class="font-bold text-lg">
+        <img src="/quartier/assets/imgs/l3.png" class="w-40 sm:w-52 md:w-64">
+      </div>
 
+      <!-- Desktop Menu -->
       <div class="hidden md:flex gap-6 text-md font-medium">
         <a href="#hero" class="text-gray-800 hover:text-black">Start</a>
         <a href="#projekt" class="text-gray-800 hover:text-black">Projekt</a>
@@ -37,6 +39,26 @@
         <a href="#kontakt" class="text-gray-800 hover:text-black">Kontakt</a>
       </div>
 
+      <!-- Hamburger Button (Mobile) -->
+      <button id="menu-btn" class="md:hidden flex flex-col gap-1">
+        <span class="w-6 h-0.5 bg-gray-800"></span>
+        <span class="w-6 h-0.5 bg-gray-800"></span>
+        <span class="w-6 h-0.5 bg-gray-800"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="flex flex-col px-4 py-3 gap-3 text-md font-medium">
+        <a href="#hero" class="text-gray-800 hover:text-black">Start</a>
+        <a href="#projekt" class="text-gray-800 hover:text-black">Projekt</a>
+        <a href="#bauprojekt" class="text-gray-800 hover:text-black">Bauprojekt</a>
+        <a href="#vorteile" class="text-gray-800 hover:text-black">Versorgung</a>
+        <a href="#wohnen" class="text-gray-800 hover:text-black">Wohnen</a>
+        <a href="#facts" class="text-gray-800 hover:text-black">Zahlen</a>
+        <a href="#kontakt" class="text-gray-800 hover:text-black">Kontakt</a>
+      </div>
     </div>
   </nav>
 
@@ -47,9 +69,9 @@
     <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"></div>
 
     <!-- Content unten links -->
-    <div class="relative w-full mx-auto ml-20">
+    <div class="relative w-full mx-auto ml-4 sm:ml-8 md:ml-20">
 
-      <div class=" text-white text-left">
+      <div class="text-white text-left">
 
         <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
           Quartier Stadtheide
@@ -67,7 +89,6 @@
     <div class="absolute bottom-0 left-0 w-full h-6 bg-linear-to-t from-black/10 to-transparent"></div>
 
   </section>
-
   <!-- PROJEKT -->
   <section id="projekt" class="py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
@@ -303,5 +324,14 @@
   </footer>
 
 </body>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () =>
+  {
+    menu.classList.toggle('hidden');
+  });
+</script>
 
 </html>
