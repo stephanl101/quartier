@@ -15,8 +15,8 @@
   <meta property="og:description" content="Neues nachhaltiges Wohn- und Einkaufsquartier mit moderner Infrastruktur und Nahversorgung.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./assets/imgs/p1.jpg">
-  <script type="module" crossorigin src="/quartier/assets/index-BW9OWdUW.js"></script>
-  <link rel="stylesheet" crossorigin href="/quartier/assets/index-C84xYILA.css">
+  <script type="module" crossorigin src="/quartier/assets/index-CxngZPAs.js"></script>
+  <link rel="stylesheet" crossorigin href="/quartier/assets/index-yzpHtBrC.css">
 </head>
 
 <body class="bg-gray-50 text-gray-800 scroll-smooth">
@@ -50,11 +50,9 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
       <div class="flex flex-col px-4 py-3 gap-3 text-md font-medium">
         <a href="#hero" class="text-gray-800 hover:text-black">Start</a>
-        <a href="#projekt" class="text-gray-800 hover:text-black">Projekt</a>
-        <a href="#bauprojekt" class="text-gray-800 hover:text-black">Bauprojekt</a>
-        <a href="#vorteile" class="text-gray-800 hover:text-black">Versorgung</a>
+        <a href="#projekt" class="text-gray-800 hover:text-black">Quartier Stadtheide</a>
+        <a href="#vorteile" class="text-gray-800 hover:text-black">Nahversorgung</a>
         <a href="#wohnen" class="text-gray-800 hover:text-black">Wohnen</a>
-        <a href="#facts" class="text-gray-800 hover:text-black">Zahlen</a>
         <a href="#kontakt" class="text-gray-800 hover:text-black">Kontakt</a>
       </div>
     </div>
@@ -161,17 +159,23 @@
   <section id="vorteile" class="bg-white py-20">
     <div class="max-w-6xl mx-auto px-4">
 
-      <h2 class="text-3xl font-semibold text-center mb-10">Nahversorgung – Alles für den täglichen Bedarf</h2>
+      <h2 class="text-3xl font-semibold text-center mb-6">
+        Nahversorgung – Alles für den täglichen Bedarf
+      </h2>
 
       <p class="mb-6 text-gray-700 leading-relaxed">
         Mit dem neuen Quartier kehrt ein lange vermisstes Angebot zurück in die Stadtheide: Mit ROSSMANN entsteht wieder ein Drogeriemarkt direkt im Stadtteil – ein Wunsch, den viele Anwohnerinnen und Anwohner seit Jahren äußern. Damit wird eine wichtige Lücke in der Nahversorgung geschlossen und der Alltag für viele Menschen spürbar erleichtert.
       </p>
+
       <p class="text-gray-700 leading-relaxed mb-10">
-        Das Quartier Stadtheide entwickelt sich damit zu einem zentralen Anlaufpunkt für die Nahversorgung. Mit drei starken Partnern entsteht ein ausgewogenes und hochwertiges Angebot für den täglichen Bedarf. </p>
+        Das Quartier Stadtheide entwickelt sich damit zu einem zentralen Anlaufpunkt für die Nahversorgung. Mit drei starken Partnern entsteht ein ausgewogenes und hochwertiges Angebot für den täglichen Bedarf.
+      </p>
+
       <div class="grid md:grid-cols-3 gap-8">
 
         <div class="bg-gray-50 p-6 rounded-xl shadow">
           <h3 class="font-semibold mb-2">Edeka Lüning</h3>
+
           <p>
             Mit Edeka Lüning entsteht erstmals ein Vollsortimenter in der Stadtheide. Kundinnen und Kunden profitieren von einer großen Auswahl an frischen Lebensmitteln, hochwertigen Produkten und regionalen Spezialitäten. Der Markt steht für Qualität, Frische und Vielfalt und wird zu einem wichtigen Ankerpunkt für die Versorgung im Stadtteil.
           </p>
@@ -186,8 +190,11 @@
 
         <div class="bg-gray-50 p-6 rounded-xl shadow">
           <h3 class="font-semibold mb-2">Lidl</h3>
-          <p>Der neue Lidl-Markt bringt frische Lebensmittel, attraktive Preise und ein modernes Filialkonzept direkt ins Quartier. Die Umsiedlung aus dem Gewerbegebiet in die Stadtheide sorgt für kürzere Wege und eine deutlich bessere Erreichbarkeit. Helle Verkaufsräume, eine übersichtliche Warenpräsentation und ein stetig wachsendes Sortiment – auch an regionalen und nachhaltigen Produkten – schaffen ein komfortables Einkaufserlebnis.</p>
+          <p>
+            Der neue Lidl-Markt bringt frische Lebensmittel, attraktive Preise und ein modernes Filialkonzept direkt ins Quartier. Die Umsiedlung aus dem Gewerbegebiet in die Stadtheide sorgt für kürzere Wege und eine deutlich bessere Erreichbarkeit. Helle Verkaufsräume, eine übersichtliche Warenpräsentation und ein stetig wachsendes Sortiment – auch an regionalen und nachhaltigen Produkten – schaffen ein komfortables Einkaufserlebnis.
+          </p>
         </div>
+
 
       </div>
     </div>
@@ -278,25 +285,55 @@
   </section>
 
   <!-- BILDER -->
-  <section id="galerie" class="w-full grid grid-cols-3 h-72 mt-0 mb-0">
-    <img src="/quartier/assets/imgs/g4.jpg" class="w-full h-72 object-cover">
-    <img src="/quartier/assets/imgs/g1.png" class="w-full h-72 object-cover">
-    <img src="/quartier/assets/imgs/g2.png" class="w-full h-72 object-cover">
+  <section id="galerie" class="w-full relative overflow-hidden mb-0 p-0">
+
+    <!-- SLIDER TRACK -->
+    <div id="slider" class="flex transition-transform duration-500 ease-in-out">
+
+      <img src="/quartier/assets/imgs/g4.jpg" class="w-1/3 h-72 md:h-96 object-cover flex-shrink-0">
+      <img src="/quartier/assets/imgs/g1.png" class="w-1/3 h-72 md:h-96 object-cover flex-shrink-0">
+      <img src="/quartier/assets/imgs/g2.png" class="w-1/3 h-72 md:h-96 object-cover flex-shrink-0">
+      <img src="/quartier/assets/imgs/g4.jpg" class="w-1/3 h-72 md:h-96 object-cover flex-shrink-0">
+      <img src="/quartier/assets/imgs/g1.png" class="w-1/3 h-72 md:h-96 object-cover flex-shrink-0">
+      <img src="/quartier/assets/imgs/g2.png" class="w-1/3 h-72 md:h-96 object-cover flex-shrink-0">
+
+    </div>
+
+    <!-- NAV BUTTONS -->
+    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white px-3 py-1 rounded-full shadow">
+      ‹
+    </button>
+
+    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white px-3 py-1 rounded-full shadow">
+      ›
+    </button>
+
   </section>
 
-  <!-- KONTAKT -->
   <section id="kontakt" class="py-40 m-0 bg-white">
     <div class="max-w-3xl mx-auto px-4">
 
-      <h2 class="text-3xl font-semibold mb-6 text-center">Ihre Fragen</h2>
-      <p class="text-gray-700 mb-8 text-center">
-        Sie haben Fragen zum Projekt, zu Wohnungen oder zu Mietflächen? Wir sind für Sie da und melden uns schnell bei Ihnen.
+      <h2 class="text-3xl font-semibold mb-6 text-center">Ihre Fragen, Sorgen und Hinweise – wir sind für Sie da
+      </h2>
+      <p class="text-gray-700 mb-6 text-center">
+        Sie haben Fragen zum Projekt, zu den Wohnungen oder zu den Mietflächen?
+        Oder möchten als Nachbar, Anwohner oder Interessierter Ihre Sorgen, Hinweise oder Anregungen mit uns teilen?
+      </p>
+      <p class="text-gray-700 mb-6 text-center">
+        Dann schreiben Sie uns gerne. Ein offener Austausch mit der Nachbarschaft ist uns wichtig. Ihre Fragen und Hinweise helfen dabei, Informationen transparent bereitzustellen und Themen frühzeitig aufzugreifen.
+      </p>
+      <p class="text-gray-700 mb-6 text-center">
+        Alle eingehenden Fragen werden anonymisiert in unserem Bereich „Fragen & Antworten“ veröffentlicht, damit auch andere Interessierte von den Informationen profitieren können.
+      </p>
+      <p class="text-gray-700 mb-12 text-center">
+        Wir freuen uns auf Ihre Nachricht und melden uns schnellstmöglich bei Ihnen zurück.
       </p>
 
       <form class="space-y-6">
 
         <input type="text" placeholder="Name" class="w-full border p-3 rounded-lg">
         <input type="email" placeholder="E-Mail" class="w-full border p-3 rounded-lg">
+        <input type="phone" placeholder="Telefon" class="w-full border p-3 rounded-lg">
         <textarea placeholder="Nachricht" rows="5" class="w-full border p-3 rounded-lg"></textarea>
 
         <button class="w-full bg-slate-800 text-white py-3 rounded-lg hover:bg-slate-700">
@@ -321,8 +358,8 @@
       <p class="text-white">© 2026 Quartier Stadtheide</p>
 
       <div class="flex gap-6">
-        <a href="#" class="text-white hover:underline">Impressum</a>
-        <a href="#" class="text-white hover:underline">Datenschutz</a>
+        <a href="impressum.html" class="text-white hover:underline">Impressum</a>
+        <a href="impressum.html" class="text-white hover:underline">Datenschutz</a>
       </div>
 
     </div>
@@ -337,6 +374,46 @@
   {
     menu.classList.toggle('hidden');
   });
+</script>
+<script>
+  let index = 0;
+  const slider = document.getElementById("slider");
+  const total = slider.children.length;
+
+  // 3 sichtbare Bilder → Schrittweite = 1 Bild = 33.333%
+  const step = 100 / 3;
+
+  function update()
+  {
+    slider.style.transform = `translateX(-${index * step}%)`;
+  }
+
+  function nextSlide()
+  {
+    // max index so dass noch 3 Bilder sichtbar bleiben
+    if (index < total - 3)
+    {
+      index++;
+    } else
+    {
+      index = 0;
+    }
+    update();
+  }
+
+  function prevSlide()
+  {
+    if (index > 0)
+    {
+      index--;
+    } else
+    {
+      index = total - 3;
+    }
+    update();
+  }
+
+  update();
 </script>
 
 </html>
